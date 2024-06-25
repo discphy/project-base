@@ -1,4 +1,4 @@
-package io.bareun.base.common.dto;
+package io.bareun.base.common.dto.map;
 
 import org.junit.jupiter.api.Test;
 
