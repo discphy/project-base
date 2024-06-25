@@ -48,7 +48,7 @@
 6. **Javadoc 생성**
    Javadoc 주석이 작성된 소스 코드는 `javadoc` 명령어를 사용하여 HTML 포맷의 문서로 변환할 수 있습니다. 이를 통해 API 문서를 생성하고 공유할 수 있습니다.
 
-### Javadoc 작성하기
+### Javadoc 작성하기 (IntelliJ IDEA)
 
 1. **메서드, 클래스, 필드에 Javadoc 추가**
    - 메서드나 클래스 선언 위에 커서를 위치시킨 후 `/**`와 Enter 키를 누르면 Javadoc 템플릿이 자동으로 생성됩니다.
