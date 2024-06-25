@@ -1,4 +1,4 @@
-package io.bareun.base.common.dto;
+package io.bareun.base.common.dto.map;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.MapUtils;
@@ -17,7 +17,7 @@ import static org.apache.commons.text.CaseUtils.toCamelCase;
  * 기본적으로 키를 camelCase로 변환합니다.
  *
  *
- * @see BaseMapTest
+ * @see BaseMapTest#jsonParsing()
  */
 @NoArgsConstructor
 public class BaseMap extends ListOrderedMap<String, Object> {
