@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.12'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'io.bareun'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven {
+        url "https://maven.egovframe.go.kr/maven/"
+    }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	implementation "org.egovframe.rte:org.egovframe.rte.fdl.idgnr:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.ptl.mvc:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.fdl.property:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.fdl.security:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.fdl.excel:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.bat.core:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.fdl.crypto:4.2.0"
+    implementation "org.egovframe.rte:org.egovframe.rte.fdl.access:4.2.0"
+
+	implementation 'org.apache.commons:commons-collections4:4.4'
+	implementation 'org.apache.commons:commons-text:1.10.0'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
