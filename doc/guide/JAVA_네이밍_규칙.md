@@ -172,7 +172,7 @@
     
 REST API의 요청 매핑을 위한 가이드는 RESTful 원칙을 준수하면서 이해하기 쉽고 명확한 URL 구조를 만드는 데 도움이 됩니다. 다음은 REST API의 요청 매핑을 설계할 때 고려해야 할 주요 사항과 권장 사항입니다.
 
-1. 자원(Resource) 명명
+1. **자원(Resource) 명명**
 
 - **명사 사용**: 자원 이름은 명사로 작성합니다.
   - 예: `/user`, `/order`, `/product`
@@ -181,7 +181,7 @@ REST API의 요청 매핑을 위한 가이드는 RESTful 원칙을 준수하면�
 - **하위 자원**: 하위 자원은 부모 자원의 ID를 포함합니다.
   - 예: `/users/{userId}/orders`, `/orders/{orderId}/items`
 
-2. HTTP 메서드
+2. **HTTP 메서드**
 
 - **GET**: 자원의 조회
   - 예: `GET /users`, `GET /users/{userId}`
@@ -194,7 +194,7 @@ REST API의 요청 매핑을 위한 가이드는 RESTful 원칙을 준수하면�
 - **DELETE**: 자원의 삭제
   - 예: `DELETE /users/{userId}`
 
-3. 상태 코드
+3. **상태 코드**
 
 - **200 OK**: 요청이 성공적으로 처리됨
 - **201 Created**: 새로운 자원이 성공적으로 생성됨
@@ -205,7 +205,7 @@ REST API의 요청 매핑을 위한 가이드는 RESTful 원칙을 준수하면�
 - **404 Not Found**: 자원을 찾을 수 없음
 - **500 Internal Server Error**: 서버 내부 오류
 
-4. URL 설계
+4. **URL 설계**
 
 - **리소스 컬렉션**: `GET /users`
 - **리소스 단일 항목**: `GET /users/{userId}`
