@@ -17,8 +17,15 @@ public class FileUtils {
     }
 
     public static void upload(MultipartFile file, String fullPath) {
+        File destFile = new File(fullPath);
+        File parentDirectory = destFile.getParentFile();
+
+        if (parentDirectory != null && !parentDirectory.exists()) {
+            parentDirectory.mkdirs();
+        }
+
         try {
-            file.transferTo(new File(fullPath));
+            file.transferTo(destFile);
         } catch (IOException e) {
             throw new IllegalStateException("Fail upload ", e);
         }
