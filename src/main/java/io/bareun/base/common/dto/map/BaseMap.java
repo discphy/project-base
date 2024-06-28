@@ -1,10 +1,9 @@
 package io.bareun.base.common.dto.map;
 
-import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.collections4.map.ListOrderedMap;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,12 +14,21 @@ import static org.apache.commons.text.CaseUtils.toCamelCase;
 /**
  * 키-값 쌍을 보관하고 조작하는 데 사용되는 DTO 맵 클래스입니다.
  * 기본적으로 키를 camelCase로 변환합니다.
- *
- *
- * @see BaseMapTest#jsonParsing()
  */
-@NoArgsConstructor
-public class BaseMap extends ListOrderedMap<String, Object> {
+public class BaseMap extends HashMap<String, Object> {
+
+    /**
+     * 기본 생성자입니다.
+     * 이는 상위 클래스의 생성자를 호출하게 됩니다.
+     */
+    public BaseMap() {
+        super();
+    }
+
+    public BaseMap(String key, Object value) {
+        super();
+        put(key, value);
+    }
 
     /**
      * 주어진 맵으로 초기화합니다.
@@ -28,6 +36,7 @@ public class BaseMap extends ListOrderedMap<String, Object> {
      * @param map 초기화에 사용할 맵
      */
     public BaseMap(Map<String, Object> map) {
+        super();
         putAll(map);
     }
 
@@ -37,7 +46,8 @@ public class BaseMap extends ListOrderedMap<String, Object> {
      * @param json JSON 객체
      */
     public BaseMap(Object json) {
-        putAll(toMap(json));
+        super();
+        putAll(convert(json, BaseMap.class));
     }
 
     /**
@@ -46,6 +56,7 @@ public class BaseMap extends ListOrderedMap<String, Object> {
      * @param json JSON 문자열
      */
     public BaseMap(String json) {
+        super();
         putAll(convert(json));
     }
 
@@ -79,6 +90,21 @@ public class BaseMap extends ListOrderedMap<String, Object> {
     @Override
     public Object put(String key, Object value) {
         return super.put(camelCase(key), value);
+    }
+
+    /**
+     * 주어진 맵의 모든 항목을 이 맵에 넣습니다.
+     * 모든 항목은 주어진 맵의 항목을 순회하면서 이 맵에 추가됩니다.
+     * 이는 {@code put(Object key, Object value)} 메서드를 사용하여 수행됩니다.
+     *
+     * @param map 이 맵에 넣을 항목이 담긴 맵입니다.
+     *          이 맵의 각 항목은 이 맵의 키와 값으로 추가됩니다.
+     */
+    @Override
+    public void putAll(Map<? extends String, ?> map) {
+        for (Map.Entry<? extends String, ?> entry : map.entrySet()) {
+            this.put(entry.getKey(), entry.getValue());
+        }
     }
 
     /**
@@ -205,7 +231,7 @@ public class BaseMap extends ListOrderedMap<String, Object> {
      * @return BaseMap 객체 또는 null
      */
     public BaseMap getMap(String key) {
-        return get(key) != null ? toMap(get(key)) : null;
+        return get(key) != null ? convert(get(key), BaseMap.class) : null;
     }
 
     /**
@@ -258,16 +284,6 @@ public class BaseMap extends ListOrderedMap<String, Object> {
      */
     public BaseMap getMapByKeys(String... keys) {
         return getMapByKeys(Arrays.asList(keys));
-    }
-
-    /**
-     * 주어진 객체를 BaseMap 클래스로 변환
-     *
-     * @param object 변환할 객체
-     * @return BaseMap 객체
-     */
-    private BaseMap toMap(Object object) {
-        return convert(object, BaseMap.class);
     }
 
     /**

@@ -44,12 +44,12 @@ public class ObjectMapperUtils {
      * 이 메서드는 JSON 객체를 Java Map 객체로 변환합니다.
      * </p>
      *
-     * @param json 변환할 JSON 객체
+     * @param object 변환할 JSON 객체
      * @param <T>  변환할 타겟 클래스의 타입
      * @return 변환된 Map 객체
      */
-    public static <T> T convert(Object json) {
-        return mapper.convertValue(json, new TypeReference<T>() {
+    public static <T> T convert(Object object) {
+        return mapper.convertValue(object, new TypeReference<T>() {
         });
     }
 
@@ -59,24 +59,24 @@ public class ObjectMapperUtils {
      * 이 메서드는 JSON 객체를 지정된 클래스 타입의 Java 객체로 변환합니다.
      * </p>
      *
-     * @param json 변환할 JSON 객체
+     * @param object 변환할 JSON 객체
      * @param type 변환할 클래스 타입
      * @param <T>  변환할 타겟 클래스의 타입
      * @return 변환된 객체
      */
-    public static <T> T convert(Object json, Class<T> type) {
-        return mapper.convertValue(json, type);
+    public static <T> T convert(Object object, Class<T> type) {
+        return mapper.convertValue(object, type);
     }
 
     /**
      * 주어진 JSON 배열을 지정된 타입의 리스트로 변환합니다.
      *
-     * @param json 변환할 JSON 배열
+     * @param object 변환할 JSON 배열
      * @param type 리스트에 포함될 객체의 클래스 타입
      * @param <T>  리스트에 포함될 객체의 타입
      * @return 변환된 리스트 객체
      */
-    public static <T> List<T> convertList(Object json, Class<T> type) {
-        return mapper.convertValue(json, mapper.getTypeFactory().constructCollectionType(List.class, type));
+    public static <T> List<T> convertList(Object object, Class<T> type) {
+        return mapper.convertValue(object, mapper.getTypeFactory().constructCollectionType(List.class, type));
     }
 }
