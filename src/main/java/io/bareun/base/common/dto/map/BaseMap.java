@@ -25,6 +25,12 @@ public class BaseMap extends HashMap<String, Object> {
         super();
     }
 
+    /**
+     * 주어진 키와 값을 가지고 초기화합니다.
+     *
+     * @param key   초기화할 키
+     * @param value 초기화할 값
+     */
     public BaseMap(String key, Object value) {
         super();
         put(key, value);
@@ -51,7 +57,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * JSON 객체로부터 맵을 생성합니다.
+     * JSON 문자열로부터 맵을 생성합니다.
      *
      * @param json JSON 문자열
      */
@@ -61,9 +67,9 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 맵으로 BaseMap을 생성합니다.
+     * 주어진 객체로부터 BaseMap을 생성합니다.
      *
-     * @param object 초기화에 사용할 맵
+     * @param object 초기화에 사용할 객체
      * @return BaseMap 인스턴스
      */
     public static BaseMap of(Object object) {
@@ -71,9 +77,9 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 맵으로 BaseMap을 생성합니다.
+     * 주어진 JSON 문자열로부터 BaseMap을 생성합니다.
      *
-     * @param json 초기화에 사용할 json 문자열
+     * @param json 초기화에 사용할 JSON 문자열
      * @return BaseMap 인스턴스
      */
     public static BaseMap of(String json) {
@@ -81,11 +87,11 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키와 값을 camelCase 키로 변환하여 맵에 추가합니다.
+     * 주어진 키와 값을 camelCase 형식으로 변환하여 맵에 추가합니다.
      *
-     * @param key   맵에 추가할 키
-     * @param value 맵에 추가할 값
-     * @return 이전 키와 연관된 값
+     * @param key   추가할 키
+     * @param value 추가할 값
+     * @return 이전에 연결된 값
      */
     @Override
     public Object put(String key, Object value) {
@@ -93,12 +99,9 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 맵의 모든 항목을 이 맵에 넣습니다.
-     * 모든 항목은 주어진 맵의 항목을 순회하면서 이 맵에 추가됩니다.
-     * 이는 {@code put(Object key, Object value)} 메서드를 사용하여 수행됩니다.
+     * 주어진 맵의 모든 항목을 이 맵에 추가합니다.
      *
-     * @param map 이 맵에 넣을 항목이 담긴 맵입니다.
-     *          이 맵의 각 항목은 이 맵의 키와 값으로 추가됩니다.
+     * @param map 추가할 맵
      */
     @Override
     public void putAll(Map<? extends String, ?> map) {
@@ -108,10 +111,10 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키와 값을 맵에 추가하고, BaseMap을 반환합니다.
+     * 주어진 키와 값을 맵에 추가하고, 이 BaseMap 인스턴스를 반환합니다.
      *
-     * @param key   맵에 추가할 키
-     * @param value 맵에 추가할 값
+     * @param key   추가할 키
+     * @param value 추가할 값
      * @return BaseMap 인스턴스
      */
     public BaseMap set(String key, Object value) {
@@ -120,7 +123,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 문자열 값을 반환합니다. 기본값을 제공할 수 있습니다.
+     * 주어진 키에 해당하는 문자열 값을 반환합니다. 기본값을 지정할 수 있습니다.
      *
      * @param key          검색할 키
      * @param defaultValue 기본값
@@ -131,7 +134,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 문자열 값을 반환합니다.
+     * 주어진 키에 해당하는 문자열 값을 반환합니다.
      *
      * @param key 검색할 키
      * @return 문자열 값
@@ -141,7 +144,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 불리언 값을 반환합니다. 기본값을 제공할 수 있습니다.
+     * 주어진 키에 해당하는 불리언 값을 반환합니다. 기본값을 지정할 수 있습니다.
      *
      * @param key          검색할 키
      * @param defaultValue 기본값
@@ -152,7 +155,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 불리언 값을 반환합니다.
+     * 주어진 키에 해당하는 불리언 값을 반환합니다.
      *
      * @param key 검색할 키
      * @return 불리언 값
@@ -162,7 +165,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 Long 값을 반환합니다. 기본값을 제공할 수 있습니다.
+     * 주어진 키에 해당하는 Long 값을 반환합니다. 기본값을 지정할 수 있습니다.
      *
      * @param key          검색할 키
      * @param defaultValue 기본값
@@ -173,7 +176,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 Long 값을 반환합니다.
+     * 주어진 키에 해당하는 Long 값을 반환합니다.
      *
      * @param key 검색할 키
      * @return Long 값
@@ -183,7 +186,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 Double 값을 반환합니다. 기본값을 제공할 수 있습니다.
+     * 주어진 키에 해당하는 Double 값을 반환합니다. 기본값을 지정할 수 있습니다.
      *
      * @param key          검색할 키
      * @param defaultValue 기본값
@@ -194,7 +197,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 Double 값을 반환합니다.
+     * 주어진 키에 해당하는 Double 값을 반환합니다.
      *
      * @param key 검색할 키
      * @return Double 값
@@ -204,7 +207,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 Integer 값을 반환합니다. 기본값을 제공할 수 있습니다.
+     * 주어진 키에 해당하는 Integer 값을 반환합니다. 기본값을 지정할 수 있습니다.
      *
      * @param key          검색할 키
      * @param defaultValue 기본값
@@ -215,7 +218,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 Integer 값을 반환합니다.
+     * 주어진 키에 해당하는 Integer 값을 반환합니다.
      *
      * @param key 검색할 키
      * @return Integer 값
@@ -225,7 +228,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 맵을 반환합니다.
+     * 주어진 키에 해당하는 맵을 반환합니다.
      *
      * @param key 검색할 키
      * @return BaseMap 객체 또는 null
@@ -235,7 +238,7 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
-     * 주어진 키에 대한 리스트를 반환합니다.
+     * 주어진 키에 해당하는 리스트를 반환합니다.
      *
      * @param key 검색할 키
      * @return BaseMap의 리스트 또는 null
@@ -246,7 +249,7 @@ public class BaseMap extends HashMap<String, Object> {
 
     /**
      * 주어진 키에 해당하는 값의 JSON 배열을 BaseMap 객체의 리스트로 변환합니다.
-     * 만약 값이 null이면 null을 반환합니다.
+     * 값이 null이면 null을 반환합니다.
      *
      * @param key 변환할 JSON 배열이 포함된 맵의 키
      * @return BaseMap 객체의 리스트
@@ -260,7 +263,7 @@ public class BaseMap extends HashMap<String, Object> {
      *
      * @param keys 검색할 키 목록
      * @return BaseMap 객체
-     * @throws IllegalArgumentException 키가 존재하지 않으면 발생
+     * @throws IllegalArgumentException 키가 존재하지 않을 경우
      */
     public BaseMap getMapByKeys(List<String> keys) {
         BaseMap map = this;
@@ -280,7 +283,7 @@ public class BaseMap extends HashMap<String, Object> {
      *
      * @param keys 검색할 키 목록
      * @return BaseMap 객체
-     * @throws IllegalArgumentException 키가 존재하지 않으면 발생
+     * @throws IllegalArgumentException 키가 존재하지 않을 경우
      */
     public BaseMap getMapByKeys(String... keys) {
         return getMapByKeys(Arrays.asList(keys));
@@ -296,4 +299,3 @@ public class BaseMap extends HashMap<String, Object> {
         return key.contains("_") ? toCamelCase(key, false, '_') : key;
     }
 }
-
