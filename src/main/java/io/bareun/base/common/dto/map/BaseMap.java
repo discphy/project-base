@@ -43,11 +43,11 @@ public class BaseMap extends HashMap<String, Object> {
     /**
      * JSON 객체로부터 맵을 생성합니다.
      *
-     * @param json JSON 객체
+     * @param object JSON 객체
      */
-    public BaseMap(Object json) {
+    public BaseMap(Object object) {
         super();
-        putAll(convert(json, BaseMap.class));
+        putAll(convert(object, BaseMap.class));
     }
 
     /**
@@ -63,11 +63,11 @@ public class BaseMap extends HashMap<String, Object> {
     /**
      * 주어진 맵으로 BaseMap을 생성합니다.
      *
-     * @param map 초기화에 사용할 맵
+     * @param object 초기화에 사용할 맵
      * @return BaseMap 인스턴스
      */
-    public static BaseMap of(Object map) {
-        return new BaseMap(map);
+    public static BaseMap of(Object object) {
+        return new BaseMap(object);
     }
 
     /**

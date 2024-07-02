@@ -3,6 +3,7 @@ package io.bareun.base.common.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * 이 클래스는 Jackson 라이브러리를 사용하여 JSON 객체를 Java 객체나 리스트로 변환하는 기능을 제공합니다.
  * </p>
  */
+@Slf4j
 @Component
 public class ObjectMapperUtils {
 
@@ -78,5 +80,14 @@ public class ObjectMapperUtils {
      */
     public static <T> List<T> convertList(Object object, Class<T> type) {
         return mapper.convertValue(object, mapper.getTypeFactory().constructCollectionType(List.class, type));
+    }
+
+    public static String toString(Object object) {
+        try {
+            return mapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            log.error("convert object to string error", e);
+            return "";
+        }
     }
 }

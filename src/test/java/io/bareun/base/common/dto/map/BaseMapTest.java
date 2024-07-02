@@ -41,6 +41,8 @@ class BaseMapTest {
 
         BaseMap baseMap = BaseMap.of(json);
 
+        System.out.println("baseMap = " + baseMap);
+
         assertThat(baseMap).isNotNull();
         assertThat(baseMap.getMap("searchMap")).isNotNull();
         assertThat(baseMap.getMap("searchMap").getString("stringValue")).isEqualTo("formal_contents");
