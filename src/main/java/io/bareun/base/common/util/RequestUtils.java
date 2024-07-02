@@ -145,6 +145,11 @@ public class RequestUtils {
         return request.getScheme();
     }
 
+    public static String getMethod() {
+        HttpServletRequest request = getCurrentHttpRequest();
+        return request.getMethod();
+    }
+
     /**
      * 현재 요청의 서버 이름을 반환합니다.
      *

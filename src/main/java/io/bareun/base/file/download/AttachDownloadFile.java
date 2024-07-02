@@ -7,14 +7,30 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
+/**
+ * AttachDownloadFile 클래스는 첨부 파일 다운로드를 위한 DownloadFile 인터페이스의 구현체입니다.
+ * 다운로드할 파일의 이름과 저장된 파일 경로를 가지고 있으며, HTTP 헤더와 실제 리소스를 제공합니다.
+ */
 @Getter
 @Builder
 @RequiredArgsConstructor
 public class AttachDownloadFile implements DownloadFile<Resource> {
 
+    /**
+     * 다운로드할 파일명
+     */
     private final String downloadFileName;
+
+    /**
+     * 저장된 파일 경로
+     */
     private final String storedFilePath;
 
+    /**
+     * HTTP 다운로드 헤더를 설정하여 반환합니다.
+     *
+     * @return HTTP 헤더 객체
+     */
     @Override
     public HttpHeaders getHeaders() {
         HttpHeaders headers = new HttpHeaders();
@@ -24,6 +40,11 @@ public class AttachDownloadFile implements DownloadFile<Resource> {
         return headers;
     }
 
+    /**
+     * 저장된 파일 경로로부터 리소스를 읽어와 반환합니다.
+     *
+     * @return 다운로드할 리소스 객체
+     */
     @Override
     public Resource getBody() {
         return FileUtils.getResource(storedFilePath);
