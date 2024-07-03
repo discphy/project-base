@@ -12,16 +12,16 @@ import lombok.RequiredArgsConstructor;
 public enum BaseErrorCode implements ErrorCode {
 
     /**
-     * HTTP 40x 코드 기반 5자리
+     * HTTP 40x 
      */
-    BAD_REQUEST(40000, "잘못된 요청 값 입니다."),
-    REQUIRED(40001, "%s 값은 필수입니다."),
-    VALIDATE(40002, "%s 값이 올바르지 않습니다."),
+    BAD_REQUEST(400, "잘못된 요청 값 입니다."),
+    REQUIRED(400, "%s 값은 필수입니다."),
+    VALIDATE(400, "%s 값이 올바르지 않습니다."),
 
     /**
-     * HTTP 50x 코드 기반 5자리
+     * HTTP 50x
      */
-    UNKNOWN(50000, "알 수 없는 에러입니다."),
+    UNKNOWN(500, "알 수 없는 에러입니다."),
     ;
 
     private final int code;
