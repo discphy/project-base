@@ -52,7 +52,7 @@ public class ApiResponse<T> {
      */
     public static <T> ApiResponse<T> success(T result) {
         return ApiResponse.<T>builder()
-                .code(HttpStatus.OK.value())
+                .code(0)
                 .message(HttpStatus.OK.getReasonPhrase())
                 .result(result)
                 .build();
@@ -63,7 +63,7 @@ public class ApiResponse<T> {
      */
     public static <T> ApiResponse<T> success() {
         return ApiResponse.<T>builder()
-                .code(HttpStatus.OK.value())
+                .code(0)
                 .message(HttpStatus.OK.getReasonPhrase())
                 .build();
     }
