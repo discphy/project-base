@@ -1,5 +1,6 @@
 package io.bareun.base.exception;
 
+import io.bareun.base.exception.code.BaseErrorCode;
 import io.bareun.base.exception.code.ErrorCode;
 import lombok.Getter;
 
@@ -19,7 +20,7 @@ public class BusinessException extends RuntimeException {
      */
     public BusinessException(String message) {
         super(message);
-        this.errorCode = ErrorCode.UNKNOWN;
+        this.errorCode = BaseErrorCode.UNKNOWN;
     }
 
     /**

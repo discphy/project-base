@@ -47,7 +47,7 @@ jar { // 배포할 jar 이름
 }
 
 shadowJar {
-    archiveFileName.set('project-base-0.0.1-SNAPSHOT-all.jar')
+    archiveFileName.set('project-base-0.0.1-all.jar')
 }
 
 publishing {
