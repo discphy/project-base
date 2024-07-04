@@ -16,15 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExcelUploadFile<T> implements UploadFile {
 
-    /**
-     * 업로드된 파일의 원본 파일명
-     */
-    private final String originalFileName;
-
-    /**
-     * 업로드된 파일의 저장된 파일명
-     */
-    private final String storedFileName;
+    private final AttachUploadFile attachUploadFile;
 
     /**
      * 엑셀 파일에서 읽어온 데이터를 저장하는 리스트
@@ -34,12 +26,12 @@ public class ExcelUploadFile<T> implements UploadFile {
     /**
      * AttachUploadFile 인스턴스에서 ExcelUploadFile 인스턴스를 생성하여 반환합니다.
      *
-     * @param upload 업로드된 파일 정보를 담고 있는 AttachUploadFile 인스턴스
+     * @param attachUploadFile 업로드된 파일 정보를 담고 있는 AttachUploadFile 인스턴스
      * @param <T>    엑셀 파일에서 읽어온 데이터의 타입
      * @return ExcelUploadFile 인스턴스
      */
-    public static <T> ExcelUploadFile<T> of(AttachUploadFile upload) {
-        return new ExcelUploadFile<>(upload.getOriginalFileName(), upload.getStoredFileName());
+    public static <T> ExcelUploadFile<T> of(AttachUploadFile attachUploadFile) {
+        return new ExcelUploadFile<>(attachUploadFile);
     }
 
     /**
@@ -62,5 +54,30 @@ public class ExcelUploadFile<T> implements UploadFile {
     public ExcelUploadFile<T> add(T t) {
         list.add(t);
         return this;
+    }
+
+    @Override
+    public String getOriginalFileName() {
+        return getAttachUploadFile().getOriginalFileName();
+    }
+
+    @Override
+    public String getStoredFileName() {
+        return getAttachUploadFile().getStoredFileName();
+    }
+
+    @Override
+    public String getStoredFilePath() {
+        return getAttachUploadFile().getStoredFilePath();
+    }
+
+    @Override
+    public String getExtension() {
+        return getAttachUploadFile().getExtension();
+    }
+
+    @Override
+    public long getSize() {
+        return getAttachUploadFile().getSize();
     }
 }

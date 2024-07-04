@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import static io.bareun.base.file.util.FileUtils.getExtension;
 import static java.util.UUID.randomUUID;
+import static org.springframework.util.StringUtils.hasText;
 
 /**
  * FileManager 인터페이스는 파일 관리 기능을 정의하는 인터페이스입니다.
@@ -22,6 +23,10 @@ public interface FileManager {
      */
     String getDirectory();
 
+    default String getSubDirectory() {
+        return "";
+    }
+
     /**
      * 주어진 파일명을 포함한 전체 파일 경로를 반환합니다.
      *
@@ -29,7 +34,7 @@ public interface FileManager {
      * @return 전체 파일 경로
      */
     default String getFullPath(String fileName) {
-        return getDirectory() + "/" + fileName;
+        return getDirectory() + "/" + (hasText(getSubDirectory()) ? getSubDirectory() + "/" : "")  + fileName;
     }
 
     /**
@@ -66,10 +71,17 @@ public interface FileManager {
 
         String originalFileName = file.getOriginalFilename();
         String storedFileName = createStoredFileName(originalFileName);
+        String storedFilePath = getFullPath(storedFileName);
 
-        FileUtils.upload(file, getFullPath(storedFileName));
+        FileUtils.upload(file, storedFilePath);
 
-        return AttachUploadFile.of(originalFileName, storedFileName);
+        return AttachUploadFile.builder()
+                .originalFileName(originalFileName)
+                .storedFileName(storedFileName)
+                .storedFilePath(storedFilePath)
+                .size(file.getSize())
+                .extension(getExtension(originalFileName))
+                .build();
     }
 
     /**
