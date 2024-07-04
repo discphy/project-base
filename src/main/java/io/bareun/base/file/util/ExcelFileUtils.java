@@ -91,10 +91,9 @@ public class ExcelFileUtils {
      * 엑셀 파일을 쓰기 위한 메타 데이터를 바이트 배열로 반환합니다.
      *
      * @param excelWriter Excel 파일 쓰기 작업을 수행하는 ExcelWriter 인스턴스
-     * @param <T>         Excel 파일에 쓰일 데이터의 타입
      * @return 생성된 엑셀 파일의 바이트 배열
      */
-    public static <T> byte[] write(ExcelWriter<T> excelWriter) {
+    public static byte[] write(ExcelWriter excelWriter) {
         try (Workbook workbook = new SXSSFWorkbook()) {
             Sheet sheet = workbook.createSheet();
             writeHeader(sheet, excelWriter);
@@ -125,9 +124,8 @@ public class ExcelFileUtils {
      *
      * @param sheet       엑셀 시트
      * @param excelWriter Excel 파일 쓰기 작업을 수행하는 ExcelWriter 인스턴스
-     * @param <T>         Excel 파일에 쓰일 데이터의 타입
      */
-    private static <T> void writeHeader(Sheet sheet, ExcelWriter<T> excelWriter) {
+    private static void writeHeader(Sheet sheet, ExcelWriter excelWriter) {
         Row row = sheet.createRow(HEADER_INDEX);
 
         for (int a = 0; a < excelWriter.getHeaderSize(); a++) {
@@ -143,12 +141,11 @@ public class ExcelFileUtils {
      *
      * @param sheet       엑셀 시트
      * @param excelWriter Excel 파일 쓰기 작업을 수행하는 ExcelWriter 인스턴스
-     * @param <T>         Excel 파일에 쓰일 데이터의 타입
      */
-    private static <T> void writeBody(Sheet sheet, ExcelWriter<T> excelWriter) {
+    private static void writeBody(Sheet sheet, ExcelWriter excelWriter) {
         int index = BODY_START_INDEX;
 
-        for (T column : excelWriter.getExcelColumns()) {
+        for (Map<String, ?> column : excelWriter.getList()) {
             writeRow(sheet.createRow(index++), column, excelWriter);
         }
     }
@@ -159,9 +156,8 @@ public class ExcelFileUtils {
      * @param row         엑셀 Row
      * @param column      작성할 데이터
      * @param excelWriter Excel 파일 쓰기 작업을 수행하는 ExcelWriter 인스턴스
-     * @param <T>         Excel 파일에 쓰일 데이터의 타입
      */
-    private static <T> void writeRow(Row row, T column, ExcelWriter<T> excelWriter) {
+    private static void writeRow(Row row, Map<String, ?> column, ExcelWriter excelWriter) {
         for (int a = 0; a < excelWriter.getHeaderSize(); a++) {
             setCellValue(row.createCell(a), excelWriter.getFieldValue(column, a));
         }
@@ -239,6 +235,11 @@ public class ExcelFileUtils {
      * @param fieldValue 설정할 값
      */
     private static void setCellValue(Cell cell, Object fieldValue) {
+        if (fieldValue == null) {
+            cell.setCellValue("");
+            return;
+        }
+
         if (fieldValue instanceof Number) {
             cell.setCellValue(((Number) fieldValue).doubleValue());
         } else if (fieldValue instanceof Boolean) {

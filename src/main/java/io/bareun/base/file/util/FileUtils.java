@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import static org.springframework.util.StringUtils.hasText;
+
 /**
  * FileUtils 클래스는 파일 관련 유틸리티 기능을 제공합니다.
  * 파일 확장자 추출 및 업로드, 리소스 획득 기능을 포함합니다.
@@ -23,6 +25,10 @@ public class FileUtils {
      * @return 추출된 확장자
      */
     public static String getExtension(String fileName) {
+        if (!hasText(fileName)) {
+            throw new IllegalArgumentException("fileName must not be empty");
+        }
+
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
