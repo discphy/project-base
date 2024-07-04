@@ -1,4 +1,4 @@
-package io.bareun.base.log;
+package io.bareun.base.log.aspect;
 
 import io.bareun.base.common.util.ObjectMapperUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ import static io.bareun.base.common.util.RequestUtils.*;
 @Slf4j
 @Aspect
 @Component
-public class ApiLoggingAspect {
+public class ApiLogAspect {
 
     /**
      * {@link org.springframework.web.bind.annotation.RestController} 어노테이션이 붙은 클래스
@@ -48,7 +48,7 @@ public class ApiLoggingAspect {
 
         String requestBody = getRequestBody(joinPoint);
 
-        log.info("HTTP Logging IP : {} | Method : {} | URL : {} | Query : {} | Body {}",
+        log.info("HTTP Log IP : {} | Method : {} | URL : {} | Query : {} | Body {}",
                 remoteAddr, method, requestURL, queryString, requestBody);
     }
 
