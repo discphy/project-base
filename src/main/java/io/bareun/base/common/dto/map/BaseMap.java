@@ -2,6 +2,8 @@ package io.bareun.base.common.dto.map;
 
 import org.apache.commons.collections4.MapUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +11,9 @@ import java.util.Map;
 
 import static io.bareun.base.common.util.ObjectMapperUtils.convert;
 import static io.bareun.base.common.util.ObjectMapperUtils.convertList;
+import static java.time.format.DateTimeFormatter.ofPattern;
 import static org.apache.commons.text.CaseUtils.toCamelCase;
+import static org.springframework.util.StringUtils.hasText;
 
 /**
  * 키-값 쌍을 보관하고 조작하는 데 사용되는 DTO 맵 클래스입니다.
@@ -225,6 +229,30 @@ public class BaseMap extends HashMap<String, Object> {
      */
     public Integer getInteger(String key) {
         return MapUtils.getInteger(this, key);
+    }
+
+    public LocalDate getDate(String key, String format, LocalDate defaultValue) {
+        if (!hasText(getString(key))) {
+            return defaultValue;
+        }
+
+        return LocalDate.parse(getString(key), ofPattern(format));
+    }
+
+    public LocalDate getDate(String key, String format) {
+        return getDate(key, format, null);
+    }
+
+    public LocalDateTime getDateTime(String key, String format, LocalDateTime defaultValue) {
+        if (!hasText(getString(key))) {
+            return defaultValue;
+        }
+
+        return LocalDateTime.parse(getString(key), ofPattern(format));
+    }
+
+    public LocalDateTime getDateTime(String key, String format) {
+        return getDateTime(key, format, null);
     }
 
     /**
