@@ -17,6 +17,8 @@ public enum BaseErrorCode implements ErrorCode {
     BAD_REQUEST(400, "잘못된 요청 값 입니다."),
     REQUIRED(400, "%s 값은 필수입니다."),
     VALIDATE(400, "%s 값이 올바르지 않습니다."),
+    UNAUTHORIZED(401, "인증정보가 유효하지 않습니다."),
+    FORBIDDEN(403, "권한이 존재하지 않습니다."),
 
     /**
      * HTTP 50x
