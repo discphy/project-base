@@ -21,7 +21,7 @@ public class SecurityUtils {
      * @return 현재 Authentication 객체
      * @throws AuthenticationCredentialsNotFoundException 인증 객체가 null인 경우
      */
-    private Authentication getCurrentAuthentication() {
+    private static Authentication getCurrentAuthentication() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
             throw new AuthenticationCredentialsNotFoundException("Authentication object is null");
@@ -35,7 +35,7 @@ public class SecurityUtils {
      * @return principal 객체
      * @throws AuthenticationCredentialsNotFoundException 인증 객체 또는 principal이 null인 경우
      */
-    public Object getUserPrincipal() {
+    public static Object getUserPrincipal() {
         Authentication authentication = getCurrentAuthentication();
         Object principal = authentication.getPrincipal();
         if (principal == null) {
@@ -50,7 +50,7 @@ public class SecurityUtils {
      * @return 현재 인증된 사용자의 UserDetails 객체
      * @throws UsernameNotFoundException 사용자 세부 정보를 찾을 수 없는 경우
      */
-    public UserDetails getUserDetails() {
+    public static UserDetails getUserDetails() {
         Object principal = getUserPrincipal();
         return principal instanceof UserDetails ? (UserDetails) principal : null;
     }
@@ -61,7 +61,7 @@ public class SecurityUtils {
      * @return 현재 인증된 사용자의 사용자 이름
      * @throws AuthenticationCredentialsNotFoundException 인증 객체 또는 principal이 null인 경우
      */
-    public String getUsername() {
+    public static String getUsername() {
         UserDetails userDetails = getUserDetails();
         return Optional.of(userDetails).orElse(null).getUsername();
     }
@@ -73,7 +73,7 @@ public class SecurityUtils {
      * @return 현재 인증된 사용자가 지정된 역할을 가지고 있으면 true, 그렇지 않으면 false
      * @throws AuthenticationCredentialsNotFoundException 인증 객체 또는 principal이 null인 경우
      */
-    public boolean hasRole(String role) {
+    public static boolean hasRole(String role) {
         Authentication authentication = getCurrentAuthentication();
         return authentication.getAuthorities().stream()
                 .anyMatch(authority -> authority.getAuthority().equals(role));
@@ -84,7 +84,7 @@ public class SecurityUtils {
      *
      * @return 사용자가 인증되었으면 true, 그렇지 않으면 false
      */
-    public boolean isAuthenticated() {
+    public static boolean isAuthenticated() {
         return getCurrentAuthentication().isAuthenticated();
     }
 
@@ -95,7 +95,7 @@ public class SecurityUtils {
      * @return 현재 인증된 사용자가 지정된 역할 중 하나라도 가지고 있으면 true, 그렇지 않으면 false
      * @throws AuthenticationCredentialsNotFoundException 인증 객체 또는 principal이 null인 경우
      */
-    public boolean hasAnyRole(String... roles) {
+    public static boolean hasAnyRole(String... roles) {
         Authentication authentication = getCurrentAuthentication();
         return authentication.getAuthorities().stream()
                 .anyMatch(authority -> {
