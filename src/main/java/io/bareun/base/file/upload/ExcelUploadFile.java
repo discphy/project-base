@@ -72,6 +72,11 @@ public class ExcelUploadFile<T> implements UploadFile {
     }
 
     @Override
+    public String getStoredPath() {
+        return getAttachUploadFile().getStoredPath();
+    }
+
+    @Override
     public String getExtension() {
         return getAttachUploadFile().getExtension();
     }

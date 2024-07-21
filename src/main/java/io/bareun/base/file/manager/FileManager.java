@@ -27,6 +27,10 @@ public interface FileManager {
         return "";
     }
 
+    default String getPath() {
+        return getDirectory() + (hasText(getSubDirectory()) ? "/" + getSubDirectory() : "");
+    }
+
     /**
      * 주어진 파일명을 포함한 전체 파일 경로를 반환합니다.
      *
@@ -34,7 +38,7 @@ public interface FileManager {
      * @return 전체 파일 경로
      */
     default String getFullPath(String fileName) {
-        return getDirectory() + "/" + (hasText(getSubDirectory()) ? getSubDirectory() + "/" : "")  + fileName;
+        return getPath() + "/" + fileName;
     }
 
     /**
@@ -72,6 +76,7 @@ public interface FileManager {
         String originalFileName = file.getOriginalFilename();
         String storedFileName = createStoredFileName(originalFileName);
         String storedFilePath = getFullPath(storedFileName);
+        String storedPath = getPath();
 
         FileUtils.upload(file, storedFilePath);
 
@@ -79,6 +84,7 @@ public interface FileManager {
                 .originalFileName(originalFileName)
                 .storedFileName(storedFileName)
                 .storedFilePath(storedFilePath)
+                .storedPath(storedPath)
                 .size(file.getSize())
                 .extension(getExtension(originalFileName))
                 .build();

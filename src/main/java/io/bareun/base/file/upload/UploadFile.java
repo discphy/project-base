@@ -21,6 +21,8 @@ public interface UploadFile {
 
     String getStoredFilePath();
 
+    String getStoredPath();
+
     String getExtension();
 
     long getSize();

@@ -24,6 +24,8 @@ public class AttachUploadFile implements UploadFile {
 
     private final String storedFilePath;
 
+    private final String storedPath;
+
     private final String extension;
 
     private final long size;
