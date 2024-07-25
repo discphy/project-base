@@ -177,7 +177,7 @@ public class RequestUtils {
      */
     public static String getRemoteAddr() {
         HttpServletRequest request = getCurrentHttpRequest();
-        return request.getRemoteAddr();
+        return request.getHeader("X-Forwarded-For");
     }
 
     /**
