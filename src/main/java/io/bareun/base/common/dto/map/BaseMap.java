@@ -1,5 +1,6 @@
 package io.bareun.base.common.dto.map;
 
+import io.bareun.base.common.util.CamelCaseUtils;
 import org.apache.commons.collections4.MapUtils;
 
 import java.time.LocalDate;
@@ -12,7 +13,6 @@ import java.util.Map;
 import static io.bareun.base.common.util.ObjectMapperUtils.convert;
 import static io.bareun.base.common.util.ObjectMapperUtils.convertList;
 import static java.time.format.DateTimeFormatter.ofPattern;
-import static org.apache.commons.text.CaseUtils.toCamelCase;
 import static org.springframework.util.StringUtils.hasText;
 
 /**
@@ -358,6 +358,6 @@ public class BaseMap extends HashMap<String, Object> {
      * @return camelCase 형식의 키
      */
     private String camelCase(String key) {
-        return key.contains("_") ? toCamelCase(key, false, '_') : key;
+        return CamelCaseUtils.toCamelCase(key);
     }
 }

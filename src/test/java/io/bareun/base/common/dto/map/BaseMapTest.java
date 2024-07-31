@@ -31,7 +31,7 @@ class BaseMapTest {
                 "      \"one\",\n" +
                 "      \"two\"\n" +
                 "    ],\n" +
-                "    \"list_map_value\": [\n" +
+                "    \"LIST\": [\n" +
                 "      {\n" +
                 "        \"key\": \"value\"\n" +
                 "      }\n" +
@@ -52,7 +52,7 @@ class BaseMapTest {
         assertThat(baseMap.getMapByKeys("searchMap", "mapValue").getString("helloWorld")).isEqualTo("I'm project base");
         assertThat(baseMap.getMap("searchMap").getList("listStringValue").get(0)).isEqualTo("one");
 
-        List<BaseMap> list = baseMap.getMap("searchMap").getMapList("listMapValue");
+        List<BaseMap> list = baseMap.getMap("searchMap").getMapList("list");
         assertThat(list.size()).isEqualTo(1);
 
         BaseMap item = list.get(0);
