@@ -29,6 +29,7 @@ public class ApiExceptionHandler {
      * @return ApiResponse 객체 (실패 응답)
      */
     @ExceptionHandler(BusinessException.class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
     public ApiResponse<?> buisnessException(BusinessException e) {
         log.error("ApiException buisnessException", e);
         return ApiResponse.fail(e.getErrorCode().getCode(), e.getMessage());
