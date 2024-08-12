@@ -46,6 +46,21 @@ public class ApiResponse<T> {
     }
 
     /**
+     * 실패 응답을 생성하는 메소드.
+     *
+     * @param code    응답 코드
+     * @param message 응답 메시지
+     * @param result  결과 데이터
+     */
+    public static <T> ApiResponse<?> fail(int code, String message, T result) {
+        return ApiResponse.builder()
+                .code(code)
+                .message(message)
+                .result(result)
+                .build();
+    }
+
+    /**
      * 성공 응답을 생성하는 메소드.
      *
      * @param result 결과 데이터
