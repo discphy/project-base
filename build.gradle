@@ -7,8 +7,13 @@ plugins {
 }
 
 group = 'io.bareun'
-version = '1.2.0'
-sourceCompatibility = '1.8'
+version = '2.0.0'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
 
 repositories {
 	mavenCentral()
