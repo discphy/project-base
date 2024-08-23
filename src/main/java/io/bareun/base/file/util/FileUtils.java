@@ -72,7 +72,7 @@ public class FileUtils {
 
         String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-        if (!ALLOWED_EXTENSIONS.contains(extension)) {
+        if (!ALLOWED_EXTENSIONS.contains(extension.toLowerCase())) {
             throw new IllegalArgumentException("extension must be one of " + ALLOWED_EXTENSIONS + ", " + extension);
         }
 
