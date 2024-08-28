@@ -29,7 +29,7 @@ public class ObjectMapperUtils {
      */
     public static <T> T convert(String json) {
         try {
-            return mapper.readValue(json, new TypeReference<T>() {
+            return mapper.readValue(json, new TypeReference<>() {
             });
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -44,7 +44,7 @@ public class ObjectMapperUtils {
      * @return 변환된 Map 객체
      */
     public static <T> T convert(Object object) {
-        return mapper.convertValue(object, new TypeReference<T>() {
+        return mapper.convertValue(object, new TypeReference<>() {
         });
     }
 
