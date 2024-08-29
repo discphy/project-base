@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 /**
  * Spring Security 관련 작업을 처리하는 유틸리티 클래스입니다.
  */
@@ -63,7 +61,7 @@ public class SecurityUtils {
      */
     public static String getUsername() {
         UserDetails userDetails = getUserDetails();
-        return Optional.of(userDetails).orElse(null).getUsername();
+        return userDetails != null ? userDetails.getUsername() : null;
     }
 
     /**
