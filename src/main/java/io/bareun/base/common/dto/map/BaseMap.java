@@ -71,6 +71,16 @@ public class BaseMap extends HashMap<String, Object> {
     }
 
     /**
+     * 주어진 맵으로 BaseMap을 생성합니다.
+     *
+     * @param map 초기화에 사용할 맵
+     * @return BaseMap 인스턴스
+     */
+    public static BaseMap of(Map<String, Object> map) {
+        return new BaseMap(map);
+    }
+
+    /**
      * 주어진 객체로부터 BaseMap을 생성합니다.
      *
      * @param object 초기화에 사용할 객체
