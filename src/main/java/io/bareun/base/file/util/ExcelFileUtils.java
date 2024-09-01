@@ -214,18 +214,13 @@ public class ExcelFileUtils {
      * @return 셀의 값
      */
     private static Object getCellValue(Cell cell) {
-        switch (cell.getCellType()) {
-            case STRING:
-                return cell.getStringCellValue();
-            case NUMERIC:
-                return cell.getNumericCellValue();
-            case BOOLEAN:
-                return cell.getBooleanCellValue();
-            case FORMULA:
-                return cell.getCellFormula();
-            default:
-                return "";
-        }
+        return switch (cell.getCellType()) {
+            case STRING -> cell.getStringCellValue();
+            case NUMERIC -> cell.getNumericCellValue();
+            case BOOLEAN -> cell.getBooleanCellValue();
+            case FORMULA -> cell.getCellFormula();
+            default -> "";
+        };
     }
 
     /**
