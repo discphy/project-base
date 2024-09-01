@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * AttachDownloadFile 클래스는 첨부 파일 다운로드를 위한 DownloadFile 인터페이스의 구현체입니다.
@@ -37,11 +37,7 @@ public class AttachDownloadFile implements DownloadFile<Resource> {
      */
     @Override
     public String getDownloadFileName() {
-        try {
-            return URLEncoder.encode(downloadFileName, "UTF-8").replaceAll("\\+", "%20");
-        } catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException("Unsupported encoding", e);
-        }
+        return URLEncoder.encode(downloadFileName, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
     }
 
     /**
@@ -52,7 +48,6 @@ public class AttachDownloadFile implements DownloadFile<Resource> {
     @Override
     public HttpHeaders getHeaders() {
         HttpHeaders headers = new HttpHeaders();
-
         headers.setContentDispositionFormData("attachment", getDownloadFileName());
 
         return headers;

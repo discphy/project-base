@@ -4,8 +4,8 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
 
@@ -33,11 +33,7 @@ public class ExcelDownloadFile implements DownloadFile<byte[]> {
      * @throws IllegalStateException 인코딩 지원되지 않는 경우
      */
     public String getDownloadFileName() {
-        try {
-            return URLEncoder.encode(downloadFileName, "UTF-8").replaceAll("\\+", "%20");
-        } catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException("Unsupported encoding", e);
-        }
+        return URLEncoder.encode(downloadFileName, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
     }
 
     /**
