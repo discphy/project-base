@@ -18,6 +18,10 @@ public class ApiResponseValidateAspect {
     public Object validateApiResponse(ProceedingJoinPoint joinPoint) throws Throwable {
         Object result = joinPoint.proceed();
 
+        if (result == null) {
+            return null;
+        }
+
         // 리턴 값이 ApiResponse or ResponseEntity<?>(파일 다운로드)
         if (!(result instanceof ApiResponse) && !(result instanceof ResponseEntity<?>)) {
             throw new InvalidApiResponseException("ApiResponse 반환 값이 아닙니다. " +
