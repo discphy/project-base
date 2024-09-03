@@ -45,13 +45,12 @@ public class QueryParamArgumentResolver implements HandlerMethodArgumentResolver
      * @param webRequest   {@link NativeWebRequest}로부터 전달받은 요청 객체
      * @param binderFactory 바인더 객체 팩토리
      * @return 요청 쿼리 파라미터가 담긴 {@link BaseMap} 객체
-     * @throws Exception 파라미터 처리 중 발생할 수 있는 예외
      */
     @Override
     public Object resolveArgument(MethodParameter parameter,
                                   ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest,
-                                  WebDataBinderFactory binderFactory) throws Exception {
+                                  WebDataBinderFactory binderFactory) {
         Map<String, String[]> parameterMap = webRequest.getParameterMap();
         BaseMap baseMap = new BaseMap();
 
