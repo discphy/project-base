@@ -191,6 +191,15 @@ public class RequestUtils {
     }
 
     /**
+     * 현재 요청의 Context Path 값을 반환합니다.
+     * @return Context Path 값
+     */
+    public static String getContextPath() {
+        HttpServletRequest request = getCurrentHttpRequest();
+        return request.getContextPath();
+    }
+
+    /**
      * 현재 요청의 호스트 헤더에서 서브도메인을 반환합니다.
      *
      * @return 서브도메인, 존재하지 않는 경우 null
