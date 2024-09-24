@@ -6,12 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Aspect
 @Component
+@ConditionalOnProperty(name = "base.aspect.api-response-validate.enabled", havingValue = "true", matchIfMissing = true)
 public class ApiResponseValidateAspect {
 
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
