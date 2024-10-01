@@ -58,7 +58,7 @@ public class RequestUtils {
      * @param value 속성의 값
      */
     public static void setSessionAttribute(String name, Object value) {
-        HttpSession session = getCurrentSession();
+        HttpSession session = getCurrentSession(true);
         session.setAttribute(name, value);
     }
 
@@ -69,7 +69,7 @@ public class RequestUtils {
      * @return 속성의 값, 속성을 찾을 수 없거나 세션이 존재하지 않는 경우 null
      */
     public static Object getSessionAttribute(String name) {
-        HttpSession session = getCurrentSession(false);
+        HttpSession session = getCurrentSession();
         return (session != null) ? session.getAttribute(name) : null;
     }
 
@@ -77,7 +77,7 @@ public class RequestUtils {
      * 현재 세션이 존재하면 무효화합니다.
      */
     public static void invalidateSession() {
-        HttpSession session = getCurrentSession(false);
+        HttpSession session = getCurrentSession();
         if (session != null) {
             session.invalidate();
         }
